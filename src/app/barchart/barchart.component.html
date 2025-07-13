@@ -1,1 +1,8 @@
-<ag-charts [options]="chartOptions" style="width: 1200px; height: 500px;"></ag-charts>
+<div style="margin-top: 11rem;">
+    <ag-charts *ngIf="isBrowser" [options]="chartOptions"></ag-charts>
+    <div>
+        <button (click)="getDataTest()">
+            Click me
+        </button>
+    </div>
+</div>
