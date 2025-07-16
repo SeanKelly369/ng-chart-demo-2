@@ -8,11 +8,11 @@ import { environment } from '../../environments/environment';
 export class AlphaVantageService {
   private readonly apiService = inject(ApiService);
 
-  async getStockData() {
+  async getStockData(symbol: string) {
     const baseUrl = 'https://www.alphavantage.co';
     const parameters = new HttpParams()
       .set('function', 'TIME_SERIES_INTRADAY')
-      .set('symbol', 'IBM')
+      .set('symbol', symbol)
       .set('interval', '1min')
       .set('apikey', environment.AlphaVantageApiKey)
 

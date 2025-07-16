@@ -24,8 +24,8 @@ export class BarchartComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  async getDataTest() {
-    const result = await this.alphaVantageService.getStockData();
+  async getDataTest(symbol: string) {
+    const result = await this.alphaVantageService.getStockData(symbol);
     console.log(result);
   }
 

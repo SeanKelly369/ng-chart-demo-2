@@ -1,3 +1,5 @@
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -9,6 +11,9 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideStore({ chartData: chartDataReducer }),
+    provideEffects([ChartDataEffects])
+
   ]
 };
