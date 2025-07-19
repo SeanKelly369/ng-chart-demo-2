@@ -4,7 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AlphaVantageService {
   private readonly apiService = inject(ApiService);
 
@@ -16,7 +16,10 @@ export class AlphaVantageService {
       .set('interval', '1min')
       .set('apikey', environment.AlphaVantageApiKey)
 
+    console.log('params', parameters);
+
     const result = await firstValueFrom(this.apiService.getData(baseUrl, 'query', parameters));
+
     return result;
   }
 }

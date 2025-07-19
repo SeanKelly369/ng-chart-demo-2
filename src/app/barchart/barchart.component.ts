@@ -15,7 +15,7 @@ import { AlphaVantageService } from '../services/alpha-vantage.service';
 })
 export class BarchartComponent {
 
-  private readonly alphaVantageService = inject(AlphaVantageService);
+  readonly alphaVantageService = inject(AlphaVantageService);
 
   public isBrowser: boolean = false;
   public chartOptions!: AgChartOptions;

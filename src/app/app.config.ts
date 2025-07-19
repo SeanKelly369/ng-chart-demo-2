@@ -1,10 +1,13 @@
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ChartDataEffects } from './store/chart-data/chart-data.effects';
+import { chartDataReducer } from './store/chart-data/chart-data.reducer';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideStore({ chartData: chartDataReducer }),
-    provideEffects([ChartDataEffects])
-
+    provideEffects([ChartDataEffects]),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };

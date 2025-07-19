@@ -9,7 +9,7 @@ export class ChartDataEffects {
     loadChartData$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ChartDataActions.loadChartData),
-            switchMap(({ symbol }) => 
+            switchMap(({ symbol }) =>
                 from(this.alphaVantageService.getStockData(symbol)).pipe(
                     map(data => ChartDataActions.loadChartDataSuccess({ data: Array.isArray(data) ? data : [data] })),
                     catchError(error =>
@@ -23,5 +23,7 @@ export class ChartDataEffects {
     constructor(
         private readonly actions$: Actions,
         private readonly alphaVantageService: AlphaVantageService
-    ) {}
+    ) {
+        console.log('AlphaVantageService:', alphaVantageService);
+    }
 }
