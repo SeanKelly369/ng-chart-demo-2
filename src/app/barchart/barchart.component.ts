@@ -15,7 +15,7 @@ import { AlphaVantageService } from '../services/alpha-vantage.service';
 })
 export class BarchartComponent {
 
-  private readonly alphaVantageService = inject(AlphaVantageService);
+  readonly alphaVantageService = inject(AlphaVantageService);
 
   public isBrowser: boolean = false;
   public chartOptions!: AgChartOptions;
@@ -24,8 +24,8 @@ export class BarchartComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  async getDataTest() {
-    const result = await this.alphaVantageService.getStockData();
+  async getDataTest(symbol: string) {
+    const result = await this.alphaVantageService.getStockData(symbol);
     console.log(result);
   }
 
